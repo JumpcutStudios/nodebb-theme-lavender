@@ -11,8 +11,11 @@
 
 					<meta itemprop="datePublished" content="{posts.relativeTime}">
 					<meta itemprop="dateModified" content="{posts.relativeEditTime}">
-
+					<!-- IF posts.user.selectedGroup.slug -->
+					<div class="topic-item" style="background-color: {posts.user.selectedGroup.labelColor};">
+					<!-- ELSE -->
 					<div class="topic-item">
+					<!-- ENDIF posts.user.selectedGroup.slug -->
 						<div class="topic-body">
 							<div class="row">
 								<div class="col-md-12">
@@ -58,11 +61,11 @@
 											<i component="user/status" class="fa fa-circle status {posts.user.status}" title='[[global:{posts.user.status}]]'></i>
 											<!-- ENDIF posts.user.userslug -->
 											<span data-username="{posts.user.username}" data-uid="{posts.user.uid}">
-												<!-- IF posts.user.uid -->
-												<strong><a href="{config.relative_path}/user/{posts.user.userslug}" itemprop="author">{posts.user.username}</a></strong> | <span class="timeago" title="{posts.relativeTime}"></span>
+												<!-- IF posts.user.userslug -->
+												[[global:user_posted_ago, <strong><a href="{config.relative_path}/user/{posts.user.userslug}" itemprop="author">{posts.user.username}</a></strong>, <span class="timeago" title="{posts.relativeTime}"></span>]]
 												<!-- ELSE -->
-												[[global:guest]] | <span class="timeago" title="{posts.relativeTime}"></span>
-												<!-- ENDIF posts.user.uid -->
+												[[global:guest_posted_ago, <span class="timeago" title="{posts.relativeTime}"></span>]]
+												<!-- ENDIF posts.user.userslug -->
 											</span>
 										</span>
 
